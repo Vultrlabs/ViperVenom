@@ -59,6 +59,7 @@ Thanks for PyArmor developers for the ability to encode Python code without brea
 * sounddevice
 * scipy
 
+# Setting Up ViperVenom
 
 After starting the software, to see which options are available, type "list" or "show list", the list of available options will be printed out
 ```
