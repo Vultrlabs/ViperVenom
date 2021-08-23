@@ -26,7 +26,7 @@ $ cd ViperVenom-main
 **NOTE:** Instead of downloading the compressed source, you may instead want to clone the GitHub 
 repository:
 ```
-$ https://github.com/Revise7/ViperVenom.git
+$ git clone https://github.com/Revise7/ViperVenom.git
 $ cd ViperVenom
 $ pip3 install -r requirements.txt
 $ python3 vipervenom.py
