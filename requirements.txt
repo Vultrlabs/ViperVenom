@@ -1,2 +1,4 @@
-termcolor
 cryptography
+pyarmor
+cx_freeze
+colorama
