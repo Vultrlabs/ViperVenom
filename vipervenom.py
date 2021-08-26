@@ -195,7 +195,7 @@ def Listener():
                                                 print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] File Grabbed. Total time: ", end_time - start_time)
                                             elif 'upload' in command:
                                                 conn.send(command.encode('utf-8'))
-                                                file_name = command[9:]
+                                                file_name = command[7:]
                                                 file_size = os.path.getsize(file_name)
                                                 conn.send(file_name.encode('utf-8'))
                                                 print(conn.recv(1024).decode('utf-8'))
