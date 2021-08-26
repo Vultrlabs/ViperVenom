@@ -201,6 +201,30 @@ mic record
 Records victim's microphone input( if the victim has an available microphone) for an amount of time you set.
 Known bug: You won't be able to type more commands after executing this command, we're working on a fix.
 
+```
+$ shell
+```
+Get a full interactive reverse shell from your target machine + special commands
+
+### Special Shell Commands
+After using the "shell" command, other than having a reverse shell, this reverse shell comes with additional commands like file download and upload.
+
+For gaining shell (see a few lines above)
+```
+$ shell
+```
+After you got a shell and was able to "cd" around and test it to see if it works, try the addional commands:
+```
+$ download {file}
+```
+Download a file from the target machine to the attacker machine (you).
+
+```
+upload {file}
+```
+Upload file from your machine to the target machine.
+
+
 # Contact Us
 For more detailed information on developing ViperVenom, please contact us at [our website](https://revise7.com/contacts). 
 Revise7 does not take any responsibility in misuse, or for illegal purposes, we cannot control the tool if it goes to the wrong hand as we do not have a kill switch.
