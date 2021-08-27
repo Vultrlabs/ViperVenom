@@ -218,7 +218,6 @@ After you got a shell and was able to "cd" around and test it to see if it works
 $ download {file}
 ```
 Download a file from the target machine to the attacker machine (you).
-
 ```
 upload {file}
 ```
@@ -228,6 +227,10 @@ Upload the file from your machine to the target machine.
 startup {file}
 ```
 Adds a file to Windows Registry startup. Recommended for persistence.
+```
+terminate
+```
+Terminates the shell session.
 
 # Contact Us
 For more detailed information on developing ViperVenom, please contact us at [our website](https://revise7.com/contacts). 
