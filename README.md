@@ -40,7 +40,7 @@ To connect a computer to the listener(you, most likely) you need to install a fe
 installation, and the Python extensions used in the client file, but you can use a Python compiler to create
 an executable.
 
-## Recommeneded !
+## Recommeneded
 As we are developing Revise7's ViperVenom, Revise7 tested [pyarmor](https://pypi.org/project/pyarmor/),
 PyArmor is a command line tool used to obfuscate python scripts, so you can encode your client file so the source won't be shown.
 ```
@@ -49,11 +49,6 @@ $ cd vipervenom-main
 $ pyarmor obfuscate <payload_name>.py
 ```
 Thanks for PyArmor developers for the ability to encode Python code without breaking the program, kudos for them!
-
-##### Install Python Extensions for The Client File:
-* pillow
-* sounddevice
-* scipy
 
 # Generating Payload (Updated 21/08/2021)
 In this section, you will be able to generate your own ViperVenom Python payload, convert it to an encoded shellcode payload, or an executable.
