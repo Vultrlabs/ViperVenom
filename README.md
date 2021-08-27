@@ -213,7 +213,7 @@ For gaining shell (see a few lines above)
 ```
 $ shell
 ```
-After you got a shell and was able to "cd" around and test it to see if it works, try the addional commands:
+After you got a shell and was able to "cd" around and test it to see if it works, try the additional commands:
 ```
 $ download {file}
 ```
@@ -222,8 +222,12 @@ Download a file from the target machine to the attacker machine (you).
 ```
 upload {file}
 ```
-Upload file from your machine to the target machine.
+Upload the file from your machine to the target machine.
 
+```
+startup {file}
+```
+Adds a file to Windows Registry startup. Recommended for persistence.
 
 # Contact Us
 For more detailed information on developing ViperVenom, please contact us at [our website](https://revise7.com/contacts). 
