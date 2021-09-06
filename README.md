@@ -1,6 +1,6 @@
 <img src="https://revise7.com/wp-content/uploads/2021/08/Logo2.svg" width="400">
 
-# ViperVenom Spyware Tool for Pentesters
+# ViperVenom Hacking Framework for Pentesters
 ```
    Y
   .-^-.
