@@ -141,7 +141,7 @@ def Listener():
                             print(f"{Fore.BLUE}[*]{Fore.WHITE} Listener Started on {ListenerHost}:{ListenerPort}, {Fore.RED}Waiting for Connections...")
                             conn, addr = s.accept()
                             with conn:
-                                print(f"{Fore.BLUE}[*]{Fore.WHITE} Recived Connection From: {addr}")
+                                print(f"{Fore.BLUE}[*]{Fore.WHITE} Received Connection From: {addr}")
                                 conn.send(Key.encode("utf-8"))
                                 print(f"{Fore.BLUE}[*]{Fore.WHITE} Sending Second Stage to {addr}")
                                 time.sleep(2)
@@ -274,7 +274,7 @@ def Listener():
                     print(f"{Fore.BLUE}[*]{Fore.WHITE} Listener Started on {ListenerHost}:{ListenerPort}, {Fore.RED}Waiting for Connections...")
                     conn, addr = s.accept()
                     with conn:
-                        print(f"{Fore.BLUE}[*]{Fore.WHITE} Recived Shell Connection From: {addr}")
+                        print(f"{Fore.BLUE}[*]{Fore.WHITE} Received Shell Connection From: {addr}")
                         print(f"{Fore.GREEN}[+]{Fore.WHITE} Spawning Shell on Device.")
                         time.sleep(1)
                         while True:
@@ -886,3 +886,15 @@ else:
     print(f"{Fore.WHITE}[{Fore.BLUE}*{Fore.WHITE}] ERROR Invaild Argument, Exiting...")
     while True:
         break
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
