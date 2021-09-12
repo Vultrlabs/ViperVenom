@@ -265,7 +265,10 @@ Terminates the shell session, use this command after gaining a shell access only
 $ merciless {file}
 ```
 Merciless Technology creates mutants of ViperVenom payloads across the system (BETA), use this command after gaining a shell access only.
-
+```
+clipboard
+```
+This command will grab the victim machine's clipboard, use this command after gaining a shell access only.
 ## Recommeneded!
 As we are developing Revise7's ViperVenom, Revise7 tested [pyarmor](https://pypi.org/project/pyarmor/),
 PyArmor is a command-line tool used to obfuscate python scripts, so you can encode your client file so the source code won't be shown.
