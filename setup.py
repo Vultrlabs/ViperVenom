@@ -3,9 +3,8 @@ import sys
 from cx_Freeze import setup, Executable
 build_exe_options = {"excludes": ["pillow"]}
 setup(
-    name = "VMware, Inc.",
-    version = "1.166.57",
-    description = "VMware Tool",
+    name = "Revise7 Technologies",
+    version = "2.2",
     options = {"build_exe": build_exe_options},
     executables = [Executable("YOURFILE.py", base="Win32GUI")] # CHANGE THIS "YOURFILE.py" TO YOUR FILE NAME !
 )
