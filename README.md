@@ -28,7 +28,7 @@ The quieter you become, the more you can hear, ViperVenom
 ViperVenom is an open-source cyber offensive tool developed by [Revise7 Security](https://revise7.com)
 for pentesters.
 ViperVenom is a great tool when it comes to pentesting assessments, as some sort of a proof
-that you broke it to a computer and were able to install ViperVenom to capture the screen or popping shell without worrying about antiviruses.
+that you broke into a computer and were able to install ViperVenom to capture the screen or popping shell without worrying about antiviruses.
 
 Help us improve the tool by [contacting us](https://revise7.com/contacts/), or by sending an [issue](https://github.com/Revise7/ViperVenom/issues)
 Keep in mind, the tool is currently in beta, bugs may happen.
