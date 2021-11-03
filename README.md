@@ -34,14 +34,12 @@ Help us improve the tool by [contacting us](https://revise7.com/contacts/), or b
 Keep in mind, the tool is currently in beta, bugs may happen.
 
 # Last Anti Virus Detections Test
-09-10-2021 10:17:28
-0/26 Detections:
-File Name: examplenewversion.exe
-Scan Date: 09-10-2021 10:17:28
+File Name: viperv.exe
+Scan Date: 03-11-2021 14:53:15
 Detected by: 0/26
 
-MD5: 0977ee81d8320c5c0571e1f0fdc46abb
-Checked by AntiScan.Me: https://antiscan.me/scan/new/result?id=xq8AOeL7fdyH
+MD5: fc51aff9e7f295d77b5e1e34de4b4a97
+Checked by AntiScan.Me: https://antiscan.me/scan/new/result?id=kMDXbXieukAm
 
 adaware:Clean
 ahnlab:Clean
@@ -69,7 +67,7 @@ webroot:Clean
 mssec:Clean
 zonealarm:Clean
 zillya:Clean
-
+				
 ## Important!
 Please do not test ViperVenom on VirusTotal, instead, test it on a website like [AntiScan.me](https://antiscan.me/)
 
