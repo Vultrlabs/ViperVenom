@@ -2,3 +2,4 @@ pyarmor
 cx_freeze
 colorama
 scipy
+pyinstaller
