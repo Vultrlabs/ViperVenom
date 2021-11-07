@@ -1,6 +1,5 @@
 pillow
 sounddevice
 scipy
-pyarmor
 psutil
 winreg
