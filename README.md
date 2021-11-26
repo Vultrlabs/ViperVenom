@@ -25,7 +25,7 @@ The quieter you become, the more you can hear, ViperVenom
                   2 [Payload Generators]
                   2     [Listeners]
 ```
-ViperVenom is an open-source cyber offensive tool developed by [Revise7 Security](https://revise7.com)
+ViperVenom is an open-source cyber offensive tool developed by the Israeli software engineering, cyber security and web hosting firm, [Revise7 Technologies](https://revise7.com)
 for pentesters.
 ViperVenom is a great tool when it comes to pentesting assessments, as some sort of a proof
 that you broke into a computer and were able to install ViperVenom to capture the screen or popping shell without worrying about antiviruses.
