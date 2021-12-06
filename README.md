@@ -67,9 +67,6 @@ webroot:Clean
 mssec:Clean
 zonealarm:Clean
 zillya:Clean
-				
-## Important!
-Please do not test ViperVenom on VirusTotal, instead, test it on a website like [AntiScan.me](https://antiscan.me/)
 
 ## Install Tool
 To create the latest tool for your platform from this source repository:
