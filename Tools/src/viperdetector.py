@@ -31,7 +31,7 @@ for file in glob.glob("xpvuNBYVvC.jpg"):
     os.chdir(tempfolder)
     for file in glob.glob("*.jpg"):
         print(f"{Fore.GREEN}[+]{Fore.WHITE} Found screenshot! Accuracy level: 40%")
-        print(f"{Fore.BLUE}[*]{Fore.WHITE} If you suspect that you're a victim ViperVenom malware, contact {Fore.CYAN}vipervenom@vultrlabs.net{Fore.WHITE}")
+        print(f"{Fore.BLUE}[*]{Fore.WHITE} If you suspect that you're a victim ViperVenom malware, contact {Fore.CYAN}info@revise7.com{Fore.WHITE}")
     for file in glob.glob("*.png"):
         print(f"{Fore.GREEN}[+]{Fore.WHITE} Found screenshot! Accuracy level: 30%")
 exit()
