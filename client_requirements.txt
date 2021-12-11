@@ -1,5 +1,0 @@
-pillow
-sounddevice
-scipy
-psutil
-winreg
