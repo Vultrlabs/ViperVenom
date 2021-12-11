@@ -86,14 +86,6 @@ $ pip3 install -r requirements.txt
 $ python3 vipervenom.py
 ```
 
-##### ViperVenom's Client Requirements: 
-```
-$ pip3 install -r client_requirements.txt
-```
-To connect a computer to the listener(you, most likely) you need to install a few Python extensions, for now. The client must have the latest Python
-installation, and the Python extensions used in the client file, but you can use a Python compiler to create
-an executable.
-
 # Generating Payload (Updated 04/09/2021)
 
 In this section, you will be able to generate your own ViperVenom Python payload, convert it to an encoded shellcode payload, or an executable.
