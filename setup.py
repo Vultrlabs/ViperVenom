@@ -1,7 +1,7 @@
 import sys
 from cx_Freeze import setup, Executable
 build_exe_options = {"excludes": ["pillow"]}
-setup(name = "Windows Defener 10",
+setup(name = "Windows Defender 10",
         version = "0.1",
         description = " ",
         options = {"build_exe": build_exe_options},
