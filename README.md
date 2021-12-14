@@ -2,28 +2,24 @@
 
 # ViperVenom, Penetration Testing Framework.
 ```
-   Y
-  .-^-.
- /     \      .- ~ ~ -.
-()     ()    /   _ _   `.                     _ _ _
- \_   _/    /  /     \   \                . ~  _ _  ~ .
-   | |     /  /       \   \             .' .~       ~-. `.
-   | |    /  /         )   )           /  /             `.`.
-   \ \_ _/  /         /   /           /  /                `'
-    \_ _ _.'         /   /           (  (
-                    /   /             \  \ 
-                   /   /               \  \ 
-                  /   /                 )  )
-                 (   (                 /  /
-                  `.  `.             .'  /
-                    `.   ~ - - - - ~   .'
-                       ~ . _ _ _ _ . ~s
 
+      (`-')  _      _  (`-') (`-')  _   (`-')       (`-') (`-')  _<-. (`-')_            <-. (`-')
+     _(OO ) (_)     \-.(OO ) ( OO).-/<-.(OO )      _(OO ) ( OO).-/   \( OO) )     .->      \(OO )_
+,--.(_/,-.\ ,-(`-') _.'    \(,------.,------,),--.(_/,-.\(,------.,--./ ,--/ (`-')----. ,--./  ,-.)
+\   \ / (_/ | ( OO)(_...--'' |  .---'|   /`. '\   \ / (_/ |  .---'|   \ |  | ( OO).-.  '|   `.'   |
+ \   /   /  |  |  )|  |_.' |(|  '--. |  |_.' | \   /   / (|  '--. |  . '|  |)( _) | |  ||  |'.'|  |
+_ \     /_)(|  |_/ |  .___.' |  .--' |  .   .'_ \     /_) |  .--' |  |\    |  \|  |)|  ||  |   |  |
+\-'\   /    |  |'->|  |      |  `---.|  |\  \ \-'\   /    |  `---.|  | \   |   '  '-'  '|  |   |  |
+    `-'     `--'   `--'      `------'`--' '--'    `-'     `------'`--'  `--'    `-----' `--'   `--'
 
 The quieter you become, the more you can hear, ViperVenom
 
                   2 [Payload Generators]
                   2     [Listeners]
+
+ Daily Tip: ViperVenom is undetectable for the latest and best antiviruses out there, and ViperVenom is free to use!
+
+ViperVenom2 landing(vipervenom/framework) >
 ```
 ViperVenom is an open-source cyber offensive tool developed by the Israeli software engineering, web hosting, and malware investigation firm, [Vultrlabs](https://vultrlabs.net)
 for pentesters.
